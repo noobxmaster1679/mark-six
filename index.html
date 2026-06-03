@@ -146,19 +146,13 @@
                         <thead>
                             <tr class="bg-gray-900 text-gray-400 uppercase text-xs sm:text-sm leading-normal">
                                 <th class="py-3 px-4 border-b border-gray-700 w-12 text-center">#</th>
-                                <th class="py-3 px-4 border-b border-gray-700 w-24">Type</th>
                                 <th class="py-3 px-4 border-b border-gray-700">Numbers</th>
-                                <th class="py-3 px-4 border-b border-gray-700 text-center w-24">Combs</th>
-                                <th class="py-3 px-4 border-b border-gray-700 text-right w-28">Cost (HK$)</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-300 text-sm font-light">
                             <tr v-for="(entry, index) in results" :key="index" class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
                                 <td class="py-4 px-4 text-center font-bold text-gray-400">
                                     {{ index + 1 }}
-                                </td>
-                                <td class="py-4 px-4 font-medium text-gray-300 capitalize">
-                                    {{ entry.type }}
                                 </td>
                                 <td class="py-4 px-4">
                                     <!-- Single / Multiple Display -->
@@ -171,32 +165,25 @@
                                     <!-- Banker Display -->
                                     <div v-if="entry.type === 'banker'" class="flex flex-col gap-2">
                                         <div class="flex items-center flex-wrap gap-1">
-                                            <span class="font-semibold text-xs text-gray-500 uppercase w-16">Bankers:</span>
+                                            <span class="font-semibold text-xs text-gray-500 uppercase w-16 flex-shrink-0">Bankers:</span>
                                             <div v-for="num in entry.bankers" :key="'b'+num" class="ball color-banker">
                                                 {{ num }}
                                             </div>
                                         </div>
                                         <div class="flex items-center flex-wrap gap-1">
-                                            <span class="font-semibold text-xs text-gray-500 uppercase w-16">Legs:</span>
+                                            <span class="font-semibold text-xs text-gray-500 uppercase w-16 flex-shrink-0">Legs:</span>
                                             <div v-for="num in entry.legs" :key="'l'+num" :class="['ball', getBallColor(num)]">
                                                 {{ num }}
                                             </div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-4 px-4 text-center font-medium text-gray-300">
-                                    {{ entry.combinations }}
-                                </td>
-                                <td class="py-4 px-4 text-right font-bold text-gray-200">
-                                    ${{ entry.cost.toLocaleString() }}
-                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr class="bg-gray-900 font-bold text-gray-200">
-                                <td colspan="3" class="py-4 px-4 text-right border-t border-gray-700">Grand Total:</td>
-                                <td class="py-4 px-4 text-center border-t border-gray-700">{{ totalCombinations.toLocaleString() }}</td>
-                                <td class="py-4 px-4 text-right text-green-400 border-t border-gray-700">${{ totalCost.toLocaleString() }}</td>
+                                <td class="py-4 px-4 text-right border-t border-gray-700">Total:</td>
+                                <td class="py-4 px-4 text-left text-green-400 border-t border-gray-700">HK$ {{ totalCost.toLocaleString() }}</td>
                             </tr>
                         </tfoot>
                     </table>
